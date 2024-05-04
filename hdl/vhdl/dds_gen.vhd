@@ -20,13 +20,19 @@ entity dds_gen is
 	lut_addr_i : in  std_logic_vector(clog2(C_LUT_DEPTH)-1 downto 0); -- LUT address --
 	lut_data_i : in  std_logic_vector(C_LUT_WIDTH-1 downto 0); -- LUT data --
 	rwr_i      : in  std_logic; -- Read/Write signal -- 
-	dac_out    : out std_logic_vector(C_DAC_WIDTH-1 downto 0) -- Output of the module , Synthesized Wave --
+	dac_o      : out std_logic_vector(C_DAC_WIDTH-1 downto 0) -- Output of the module , Synthesized Wave --
 	
   );
 end entity dds_gen;
 
 architecture implementation of dds_gen is
+
+
   
 begin
+
+
+
+
   
 end architecture implementation;

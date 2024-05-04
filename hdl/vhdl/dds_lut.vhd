@@ -1,24 +1,38 @@
--- VHDL entity declaration
-entity YourEntityName is
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+use dds.dds_pkg.all;
+
+entity dds_lut is
   generic (
-    -- Declare your generics here
-    GENERIC_NAME_1  : data_type_1 := default_value_1;
-    GENERIC_NAME_2  : data_type_2 := default_value_2;
-    -- Add more generics as needed
+  
+    C_LUT_WIDTH  : INTEGER := 32;   -- Selects LUT Resolution --
+    C_LUT_DEPTH  : INTEGER := 1024  -- Selects LUT Depth --
+	
   );
   port (
-    -- Declare your ports here
-    PORT_NAME_1 : in  data_type_1;
-    PORT_NAME_2 : out data_type_2;
-    -- Add more ports as needed
+    
+	clk_sys_i  : in  std_logic;
+	clk_ds_i   : in  std_logic;
+	-- PORTA ( ACCESS FROM SW )    --
+	pa_en_i    : in  std_logic;
+	pa_wr_i    : in  std_logic; 
+	pa_addr_i  : in  std_logic_vector(clog2(C_LUT_DEPTH)-1 downto 0);
+    pa_data_i  : in  std_logic_vector(C_LUT_WIDTH-1 downto 0);
+ 	-- PORTB ( ACCESS FROM LOGIC ) --
+	pb_en_i    : in  std_logic;
+	pb_r_i     : in  std_logic;
+	pb_addr_i  : in  std_logic_vector(clog2(C_LUT_DEPTH)-1 downto 0);
+	pb_data_o  : out std_logic_vector(C_LUT_WIDTH-1 downto 0)
+	
+	
   );
-end entity YourEntityName;
+end entity dds_lut;
 
--- VHDL architecture definition
-architecture YourArchitectureName of YourEntityName is
-  -- Declare your internal signals and variables here
+architecture implementation of dds_lut is
   
 begin
-  -- Write your architecture implementation here
+
+
   
-end architecture YourArchitectureName;
+end architecture implementation;
