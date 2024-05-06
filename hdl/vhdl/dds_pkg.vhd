@@ -4,8 +4,8 @@ use IEEE.numeric_std.all;
 
 package dds_pkg is
 
-  function clog2(input : natural) return natural;
-
+  function clog2(input : natural) return natural; 
+  
 end package dds_pkg;
 
 package body dds_pkg is
