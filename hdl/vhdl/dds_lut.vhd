@@ -45,7 +45,6 @@ PA: process ( clk_i ) is begin
 	if ( clk_i'event and clk_i = '1' ) then 
 		if ( rst_i = '1' ) then 
 			pa_reg_out <= ( others => '0' );
-			dpram <= ( others => ( others => '0' ) );
 		else 	
 			if ( pa_en_i = '1' ) then 
 				if ( pa_rwr_i = '1' ) then 
