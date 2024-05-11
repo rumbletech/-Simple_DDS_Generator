@@ -1,7 +1,8 @@
 library IEEE;
+library DDS;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
-use dds.dds_pkg.all;
+use DDS.dds_pkg.all;
 
 entity dds_gen is
   generic (
@@ -52,11 +53,11 @@ signal lut_pb_data_from    : std_logic_vector(C_LUT_WIDTH-1 downto 0) := ( other
 begin
 
 
- LUT : entity dds.dds_lut
+ LUT : entity DDS.dds_lut
 	generic map (
 		C_LUT_WIDTH   => C_LUT_WIDTH,
 		C_LUT_DEPTH   => C_LUT_DEPTH	
-	);
+	)
     port map (
    
 		clk_i      => clk_sys_i,
@@ -72,7 +73,7 @@ begin
 		pb_data_o  => lut_pb_data_from
     );
 	
- CTRL_REGS : entity dds.dds_regs
+ CTRL_REGS : entity DDS.dds_regs
     port map (
 		clk_i  		=> clk_sys_i,
 		rst_i  		=> rst_sys_i,
@@ -82,20 +83,20 @@ begin
 		data_i 		=> reg_data_to,
 		data_o 		=> reg_data_from,	
 		tune_o      => ctrl_tune,
-		start_o     => ctr_start
+		start_o     => ctrl_start
     );
 	
- CORE : entity dds.dds_core
+ CORE : entity DDS.dds_core
 	generic map(
 		C_LUT_DEPTH        => C_LUT_DEPTH,
 		C_PHA_ACC_WIDTH    => C_PHA_ACC_WIDTH
-	);
-  port (
+	)
+    port map (
 		clk_sys_i    => clk_sys_i,
 		rst_sys_i    => rst_sys_i,
 		clk_ds_i     => '0',
 		tune_i       => ctrl_tune,
-		start_i      => ctr_start,
+		start_i      => ctrl_start,
 		lut_addr_o   => lut_pb_addr,
 		lut_r_o      => lut_pb_r,
 		lut_r_en_o   => lut_pb_en

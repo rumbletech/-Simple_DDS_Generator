@@ -1,7 +1,8 @@
 library IEEE;
+library DDS;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
-use dds.dds_pkg.all;
+use DDS.dds_pkg.all;
 
 entity dds_core is
   generic (
@@ -45,10 +46,10 @@ process ( clk_sys_i ) begin
 	end if;
 end process;
 
-entity dds.dds_adder
+PHA_ACC_ADDER : entity DDS.dds_adder
 	generic map ( 
 		C_VEC_SIZE => C_PHA_ACC_WIDTH
-	);
+	)
     port map (
 		A_i 	=> 	pha_acc,
 		B_i 	=> 	tune_i,

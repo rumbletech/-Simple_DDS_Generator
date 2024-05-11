@@ -1,7 +1,8 @@
 library IEEE;
+library DDS;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
-use dds.dds_pkg.all;
+use DDS.dds_pkg.all;
 
 entity dds_fa is
   port (

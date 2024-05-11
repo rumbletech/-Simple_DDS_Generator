@@ -1,7 +1,8 @@
 library IEEE;
+library DDS;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
-use dds.dds_pkg.all;
+use DDS.dds_pkg.all;
 
 entity dds_lut is
   generic (
@@ -70,10 +71,10 @@ PB: process ( clk_i ) is begin
 				if ( pb_r_i = '1' ) then 
 					pb_reg_out <= dpram(to_integer(unsigned(pb_addr_i)));
 				else 
-					pb_reg_out <= pb_data_o;
+					pb_reg_out <= pb_reg_out;
 				end if;
 			else 
-				pb_reg_out <= pb_data_o;
+				pb_reg_out <= pb_reg_out;
 			end if;
 		end if;
 	end if;
