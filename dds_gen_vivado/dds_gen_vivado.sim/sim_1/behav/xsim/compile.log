@@ -1,4 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Main/-Simple_DDS_Generator/hdl/vhdl/dds_gen.vhd" into library DDS
-INFO: [VRFC 10-3107] analyzing entity 'dds_gen'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Main/-Simple_DDS_Generator/hdl/vhdl/dds_tb.vhd" into library DDS
-INFO: [VRFC 10-3107] analyzing entity 'tb_dds_gen'

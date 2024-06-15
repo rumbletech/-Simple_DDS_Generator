@@ -1,0 +1,11 @@
+*.gise
+_xmsgs/
+iseconfig/
+isim/
+*.hmtl
+*.log
+*.cmd
+*.exe
+*.ini
+*.prj
+*.xmsgs
