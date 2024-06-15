@@ -1,0 +1,28 @@
+Command line:
+   tb_dds_gen_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  61984
+
+Sat Jun 15 23:52:16 2024
+
+
+ Elaboration Time: 0.03125 sec
+
+ Current Memory Usage: 5647.25 Meg
+
+ Total Signals          : 408
+ Total Nets             : 4813
+ Total Signal Drivers   : 159
+ Total Blocks           : 138
+ Total Primitive Blocks : 70
+ Total Processes        : 144
+ Total Traceable Variables  : 158
+ Total Scalar Nets and Variables : 5543
+
+ Total Simulation Time: 0.0625 sec
+
+ Current Memory Usage: 4860.82 Meg
+
+Sat Jun 15 23:55:47 2024
+

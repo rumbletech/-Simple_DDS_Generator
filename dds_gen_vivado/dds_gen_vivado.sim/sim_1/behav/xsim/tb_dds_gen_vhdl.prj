@@ -1,0 +1,13 @@
+# compile vhdl design source files
+vhdl DDS  \
+"../../../../../hdl/vhdl/dds_pkg.vhd" \
+"../../../../../hdl/vhdl/dds_fa.vhd" \
+"../../../../../hdl/vhdl/dds_adder.vhd" \
+"../../../../../hdl/vhdl/dds_core.vhd" \
+"../../../../../hdl/vhdl/dds_lut.vhd" \
+"../../../../../hdl/vhdl/dds_regs.vhd" \
+"../../../../../hdl/vhdl/dds_gen.vhd" \
+"../../../../../hdl/vhdl/dds_tb.vhd" \
+
+# Do not sort compile order
+nosort

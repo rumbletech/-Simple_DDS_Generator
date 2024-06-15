@@ -1,0 +1,24 @@
+Vivado Simulator v2022.2
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L DDS -L secureip --snapshot tb_dds_gen_behav DDS.tb_dds_gen -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-1537] value 2147483648 is out of target constraint range 0 to 2147483647 [/proj/xbuilds/9999.0_INT_0921_2117/installs/all_platforms/Vivado/9999.0/data/vhdl/src/ieee_2008/numeric_std-body.vhdl:3329]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.math_real
+Compiling package dds.dds_pkg
+Compiling architecture implementation of entity dds.dds_lut [\dds_lut(c_lut_width=16,c_lut_de...]
+Compiling architecture implementation of entity dds.dds_regs [dds_regs_default]
+Compiling architecture implementation of entity dds.dds_fa [dds_fa_default]
+Compiling architecture implementation of entity dds.dds_adder [dds_adder_default]
+Compiling architecture implementation of entity dds.dds_core [\dds_core(c_lut_depth=256)\]
+Compiling architecture implementation of entity dds.dds_gen [\dds_gen(c_lut_width=16,c_lut_de...]
+Compiling architecture tb of entity dds.tb_dds_gen
+Built simulation snapshot tb_dds_gen_behav

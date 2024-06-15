@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="C:/Main/-Simple_DDS_Generator/dds_gen_ise/tb_dds_gen_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="dds_pkg" />
+            <top_module name="math_real" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="tb_dds_gen" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="21" />
+   <wvobject fp_name="/tb_dds_gen/clk_sys_i" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_sys_i</obj_property>
+      <obj_property name="ObjectShortName">clk_sys_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/rst_sys_i" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst_sys_i</obj_property>
+      <obj_property name="ObjectShortName">rst_sys_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/clk_ds_i" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_ds_i</obj_property>
+      <obj_property name="ObjectShortName">clk_ds_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/reg_sel_i" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_sel_i</obj_property>
+      <obj_property name="ObjectShortName">reg_sel_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/reg_addr_i" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_addr_i[1:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_addr_i[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/reg_data_i" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_data_i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_data_i[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/reg_data_o" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_data_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_data_o[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/lut_sel_i" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">lut_sel_i</obj_property>
+      <obj_property name="ObjectShortName">lut_sel_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/lut_addr_i" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">lut_addr_i[7:0]</obj_property>
+      <obj_property name="ObjectShortName">lut_addr_i[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/lut_data_i" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">lut_data_i[15:0]</obj_property>
+      <obj_property name="ObjectShortName">lut_data_i[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/lut_data_o" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">lut_data_o[15:0]</obj_property>
+      <obj_property name="ObjectShortName">lut_data_o[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/rwr_i" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rwr_i</obj_property>
+      <obj_property name="ObjectShortName">rwr_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/dac_o" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dac_o[15:0]</obj_property>
+      <obj_property name="ObjectShortName">dac_o[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/clk_hperiod" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_hperiod</obj_property>
+      <obj_property name="ObjectShortName">clk_hperiod</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/c_lut_width" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">c_lut_width</obj_property>
+      <obj_property name="ObjectShortName">c_lut_width</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/c_lut_depth" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">c_lut_depth</obj_property>
+      <obj_property name="ObjectShortName">c_lut_depth</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/c_da_width" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">c_da_width</obj_property>
+      <obj_property name="ObjectShortName">c_da_width</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/reg_ctrl_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_ctrl_addr[1:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_ctrl_addr[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/reg_tune0_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_tune0_addr[1:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_tune0_addr[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/reg_tune1_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_tune1_addr[1:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_tune1_addr[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/reg_unused1_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_unused1_addr[1:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_unused1_addr[1:0]</obj_property>
+   </wvobject>
+</wave_config>

@@ -1,0 +1,8 @@
+vhdl DDS "../hdl/vhdl/dds_pkg.vhd"
+vhdl DDS "../hdl/vhdl/dds_fa.vhd"
+vhdl DDS "../hdl/vhdl/dds_adder.vhd"
+vhdl DDS "../hdl/vhdl/dds_regs.vhd"
+vhdl DDS "../hdl/vhdl/dds_lut.vhd"
+vhdl DDS "../hdl/vhdl/dds_core.vhd"
+vhdl DDS "../hdl/vhdl/dds_gen.vhd"
+vhdl DDS "../hdl/vhdl/dds_tb.vhd"

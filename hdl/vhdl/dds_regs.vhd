@@ -111,8 +111,9 @@ process ( clk_i ) is begin
 end process;
 
 
-tune_o <= reg_tuning_1 & reg_tuning_0;
-start_o  <= reg_ctrl(BIT_START_INDEX);				
+tune_o   <= reg_tuning_1 & reg_tuning_0;
+start_o  <= reg_ctrl(BIT_START_INDEX);	
+data_o   <= reg_read;
 					
   
 end architecture implementation;
