@@ -54,27 +54,30 @@ architecture tb of tb_dds_gen is
 
 
     -- Module Declarations --
+	
     constant C_LUT_WIDTH : integer := 16;
     constant C_LUT_DEPTH : integer := 256;
     constant C_DA_WIDTH  : integer := 16;
+	
     constant REG_CTRL_ADDR    : std_logic_vector(1 downto 0) := "00";
-    constant REG_TUNE0_ADDR   : std_logic_vector(1 downto 0) := "01";
-    constant REG_TUNE1_ADDR   : std_logic_vector(1 downto 0) := "10";
+    constant REG_TUNE_ADDR   : std_logic_vector(1 downto 0) := "01";
+    constant REG_UNUSED0_ADDR   : std_logic_vector(1 downto 0) := "10";
     constant REG_UNUSED1_ADDR : std_logic_vector(1 downto 0) := "11";
-    signal clk_sys_i  : std_logic;
-    signal rst_sys_i  : std_logic;
-    signal clk_ds_i   : std_logic;
-    signal reg_sel_i  : std_logic;
-    signal reg_addr_i : std_logic_vector (1 downto 0);
-    signal reg_data_i : std_logic_vector (31 downto 0);
-    signal reg_data_o : std_logic_vector (31 downto 0);
-    signal lut_sel_i  : std_logic;
-    signal lut_addr_i : std_logic_vector (clog2(C_LUT_DEPTH)-1 downto 0);
-    signal lut_data_i : std_logic_vector (C_LUT_WIDTH-1 downto 0);
-    signal lut_data_o : std_logic_vector (C_LUT_WIDTH-1 downto 0);
-    signal reg_rwr_i  : std_logic;
-    signal lut_rwr_i  : std_logic;
-    signal dac_o      : std_logic_vector (C_DA_WIDTH-1 downto 0);
+
+    signal clk_sys_i   : std_logic;
+    signal rst_sys_i   : std_logic;
+    signal reg_sel_i   : std_logic;
+    signal reg_addr_i  : std_logic_vector (1 downto 0);
+    signal reg_data_i  : std_logic_vector (31 downto 0);
+    signal reg_data_o  : std_logic_vector (31 downto 0);
+    signal lut_sel_i   : std_logic;
+    signal lut_addr_i  : std_logic_vector (clog2(C_LUT_DEPTH)-1 downto 0);
+    signal lut_data_i  : std_logic_vector (C_LUT_WIDTH-1 downto 0);
+    signal lut_data_o  : std_logic_vector (C_LUT_WIDTH-1 downto 0);
+    signal reg_rwr_i   : std_logic;
+    signal lut_rwr_i   : std_logic;
+    signal dac_data_o  : std_logic_vector (C_DA_WIDTH-1 downto 0);
+	signal dac_valid_o : std_logic;
     
 
 begin
@@ -85,20 +88,20 @@ begin
                     C_LUT_DEPTH => C_LUT_DEPTH,
                     C_DA_WIDTH  => C_DA_WIDTH
      )
-    port map (clk_sys_i  => clk_sys_i,
-              rst_sys_i  => rst_sys_i,
-              clk_ds_i   => clk_ds_i,
-              reg_sel_i  => reg_sel_i,
-              reg_addr_i => reg_addr_i,
-              reg_data_i => reg_data_i,
-              reg_data_o => reg_data_o,
-              lut_sel_i  => lut_sel_i,
-              lut_addr_i => lut_addr_i,
-              lut_data_i => lut_data_i,
-              lut_data_o => lut_data_o,
-              reg_rwr_i  => reg_rwr_i,
-              lut_rwr_i  => lut_rwr_i,
-              dac_o      => dac_o);
+    port map (clk_sys_i   => clk_sys_i,
+              rst_sys_i   => rst_sys_i,
+              reg_sel_i   => reg_sel_i,
+              reg_addr_i  => reg_addr_i,
+              reg_data_i  => reg_data_i,
+              reg_data_o  => reg_data_o,
+              lut_sel_i   => lut_sel_i,
+              lut_addr_i  => lut_addr_i,
+              lut_data_i  => lut_data_i,
+              lut_data_o  => lut_data_o,
+              reg_rwr_i   => reg_rwr_i,
+              lut_rwr_i   => lut_rwr_i,
+              dac_data_o  => dac_data_o,
+			  dac_valid_o => dac_valid_o);
 
     clock_gen : process
     begin
@@ -149,9 +152,9 @@ begin
     
     procedure CheckReg( addr : in std_logic_vector(1 downto 0); data: in std_logic_vector(31 downto 0)) is
         begin
-            WriteReg(REG_CTRL_ADDR,data);
+            WriteReg(addr,data);
             wait for 2*CLK_HPERIOD ;        
-            ReadReg(REG_CTRL_ADDR);
+            ReadReg(addr);
             assert reg_data_o = data
                 report "RegisterCheck Fail at addr = " & integer'image(to_integer(unsigned(addr))) &
                        " expected data = " & integer'image(to_integer(unsigned(data))) & 
@@ -178,7 +181,6 @@ begin
     
     begin
         -- EDIT Adapt initialization as needed
-        clk_ds_i <= '0';
         reg_sel_i <= '0';
         reg_addr_i <= (others => '0');
         reg_data_i <= (others => '0');
@@ -194,27 +196,31 @@ begin
         rst_sys_i <= '0';
         wait for 100 ns;
         -- EDIT Add stimuli here
-        CheckReg(REG_CTRL_ADDR,X"80000000");
+        CheckReg(REG_CTRL_ADDR,X"10000000");
         wait for 2*CLK_HPERIOD ;        
-        CheckReg(REG_TUNE0_ADDR,X"40000000");
+        CheckReg(REG_TUNE_ADDR,X"20000000");
         wait for 2*CLK_HPERIOD ;        
-        CheckReg(REG_TUNE1_ADDR,X"20000000");
+        CheckReg(REG_UNUSED0_ADDR,X"40000000");
         wait for 2*CLK_HPERIOD ;        
-        CheckReg(REG_UNUSED1_ADDR,X"10000000");
+        CheckReg(REG_UNUSED1_ADDR,X"80000000");
 		wait for 2*CLK_HPERIOD ;      
 
         CheckReg(REG_CTRL_ADDR,X"00000000");
         wait for 2*CLK_HPERIOD ;        
-        CheckReg(REG_TUNE0_ADDR,X"00000000");
+        CheckReg(REG_TUNE_ADDR,X"00000000");
         wait for 2*CLK_HPERIOD ;        
-        CheckReg(REG_TUNE1_ADDR,X"00000000");
+        CheckReg(REG_UNUSED0_ADDR,X"00000000");
         wait for 2*CLK_HPERIOD ;        
         CheckReg(REG_UNUSED1_ADDR,X"00000000");
 		wait for 2*CLK_HPERIOD ;     
-		
+		-- Write Sine Table into LUT --
 		WriteSine;
-
-		wait for 2*CLK_HPERIOD ;     
+		wait for 2*CLK_HPERIOD ;
+		-- Write Tunning Word  and Start Synthesis --
+        CheckReg(REG_TUNE_ADDR,X"00001004");
+        wait for 2*CLK_HPERIOD ; 		
+        CheckReg(REG_CTRL_ADDR,X"80000000");
+        wait for 2*CLK_HPERIOD ;   		
 
         wait;
     end process;

@@ -11,15 +11,18 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="10.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="30.850001 us"></ZoomEndTime>
-      <Cursor1Time time="18.440000 us"></Cursor1Time>
+      <ZoomStartTime time="0.007840000 ms"></ZoomStartTime>
+      <ZoomEndTime time="42.757840001 ms"></ZoomEndTime>
+      <Cursor1Time time="10.107840000 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="277"></NameColumnWidth>
-      <ValueColumnWidth column_width="134"></ValueColumnWidth>
+      <NameColumnWidth column_width="477"></NameColumnWidth>
+      <ValueColumnWidth column_width="204"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="23" />
+   <WVObjectSize size="45" />
+   <wave_markers>
+      <marker time="26194930000" label="" />
+   </wave_markers>
    <wvobject fp_name="/tb_dds_gen/test_wf" type="array">
       <obj_property name="ElementShortName">test_wf[15:0]</obj_property>
       <obj_property name="ObjectShortName">test_wf[15:0]</obj_property>
@@ -34,10 +37,6 @@
    <wvobject fp_name="/tb_dds_gen/rst_sys_i" type="logic">
       <obj_property name="ElementShortName">rst_sys_i</obj_property>
       <obj_property name="ObjectShortName">rst_sys_i</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_dds_gen/clk_ds_i" type="logic">
-      <obj_property name="ElementShortName">clk_ds_i</obj_property>
-      <obj_property name="ObjectShortName">clk_ds_i</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_dds_gen/reg_sel_i" type="logic">
       <obj_property name="ElementShortName">reg_sel_i</obj_property>
@@ -71,14 +70,6 @@
       <obj_property name="ElementShortName">lut_data_o[15:0]</obj_property>
       <obj_property name="ObjectShortName">lut_data_o[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_dds_gen/rwr_i" type="logic">
-      <obj_property name="ElementShortName">rwr_i</obj_property>
-      <obj_property name="ObjectShortName">rwr_i</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_dds_gen/dac_o" type="array">
-      <obj_property name="ElementShortName">dac_o[15:0]</obj_property>
-      <obj_property name="ObjectShortName">dac_o[15:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_dds_gen/CLK_HPERIOD" type="other">
       <obj_property name="ElementShortName">CLK_HPERIOD</obj_property>
       <obj_property name="ObjectShortName">CLK_HPERIOD</obj_property>
@@ -95,6 +86,55 @@
       <obj_property name="ElementShortName">C_LUT_DEPTH</obj_property>
       <obj_property name="ObjectShortName">C_LUT_DEPTH</obj_property>
    </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/CORE/start_i" type="logic">
+      <obj_property name="ElementShortName">start_i</obj_property>
+      <obj_property name="ObjectShortName">start_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/CORE/tune_i" type="array">
+      <obj_property name="ElementShortName">tune_i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tune_i[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/dac_data_o" type="array">
+      <obj_property name="ElementShortName">dac_data_o[15:0]</obj_property>
+      <obj_property name="ObjectShortName">dac_data_o[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/dac_valid_o" type="logic">
+      <obj_property name="ElementShortName">dac_valid_o</obj_property>
+      <obj_property name="ObjectShortName">dac_valid_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/CORE/lut_addr_o" type="array">
+      <obj_property name="ElementShortName">lut_addr_o[7:0]</obj_property>
+      <obj_property name="ObjectShortName">lut_addr_o[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/CORE/pha_acc" type="array">
+      <obj_property name="ElementShortName">pha_acc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pha_acc[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/CORE/next_pha_acc" type="array">
+      <obj_property name="ElementShortName">next_pha_acc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">next_pha_acc[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/REG_UNUSED1_ADDR" type="array">
+      <obj_property name="ElementShortName">REG_UNUSED1_ADDR[1:0]</obj_property>
+      <obj_property name="ObjectShortName">REG_UNUSED1_ADDR[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/REG_CTRL_ADDR" type="array">
+      <obj_property name="ElementShortName">REG_CTRL_ADDR[1:0]</obj_property>
+      <obj_property name="ObjectShortName">REG_CTRL_ADDR[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/C_DA_WIDTH" type="other">
+      <obj_property name="ElementShortName">C_DA_WIDTH</obj_property>
+      <obj_property name="ObjectShortName">C_DA_WIDTH</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/C_LUT_DEPTH" type="other">
+      <obj_property name="ElementShortName">C_LUT_DEPTH</obj_property>
+      <obj_property name="ObjectShortName">C_LUT_DEPTH</obj_property>
+   </wvobject>
    <wvobject fp_name="/tb_dds_gen/C_DA_WIDTH" type="other">
       <obj_property name="ElementShortName">C_DA_WIDTH</obj_property>
       <obj_property name="ObjectShortName">C_DA_WIDTH</obj_property>
@@ -103,16 +143,72 @@
       <obj_property name="ElementShortName">REG_CTRL_ADDR[1:0]</obj_property>
       <obj_property name="ObjectShortName">REG_CTRL_ADDR[1:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_dds_gen/REG_TUNE0_ADDR" type="array">
-      <obj_property name="ElementShortName">REG_TUNE0_ADDR[1:0]</obj_property>
-      <obj_property name="ObjectShortName">REG_TUNE0_ADDR[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_dds_gen/REG_TUNE1_ADDR" type="array">
-      <obj_property name="ElementShortName">REG_TUNE1_ADDR[1:0]</obj_property>
-      <obj_property name="ObjectShortName">REG_TUNE1_ADDR[1:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_dds_gen/REG_UNUSED1_ADDR" type="array">
       <obj_property name="ElementShortName">REG_UNUSED1_ADDR[1:0]</obj_property>
       <obj_property name="ObjectShortName">REG_UNUSED1_ADDR[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/clk_i" type="logic">
+      <obj_property name="ElementShortName">clk_i</obj_property>
+      <obj_property name="ObjectShortName">clk_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/rst_i" type="logic">
+      <obj_property name="ElementShortName">rst_i</obj_property>
+      <obj_property name="ObjectShortName">rst_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/pa_rwr_i" type="logic">
+      <obj_property name="ElementShortName">pa_rwr_i</obj_property>
+      <obj_property name="ObjectShortName">pa_rwr_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/pa_en_i" type="logic">
+      <obj_property name="ElementShortName">pa_en_i</obj_property>
+      <obj_property name="ObjectShortName">pa_en_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/pa_addr_i" type="array">
+      <obj_property name="ElementShortName">pa_addr_i[7:0]</obj_property>
+      <obj_property name="ObjectShortName">pa_addr_i[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/pa_data_i" type="array">
+      <obj_property name="ElementShortName">pa_data_i[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pa_data_i[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/pa_data_o" type="array">
+      <obj_property name="ElementShortName">pa_data_o[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pa_data_o[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/pb_en_i" type="logic">
+      <obj_property name="ElementShortName">pb_en_i</obj_property>
+      <obj_property name="ObjectShortName">pb_en_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/pb_r_i" type="logic">
+      <obj_property name="ElementShortName">pb_r_i</obj_property>
+      <obj_property name="ObjectShortName">pb_r_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/pb_addr_i" type="array">
+      <obj_property name="ElementShortName">pb_addr_i[7:0]</obj_property>
+      <obj_property name="ObjectShortName">pb_addr_i[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/pb_data_o" type="array">
+      <obj_property name="ElementShortName">pb_data_o[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pb_data_o[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/pb_reg_out" type="array">
+      <obj_property name="ElementShortName">pb_reg_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pb_reg_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/pa_reg_out" type="array">
+      <obj_property name="ElementShortName">pa_reg_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pa_reg_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/dpram" type="array">
+      <obj_property name="ElementShortName">dpram[255:0][15:0]</obj_property>
+      <obj_property name="ObjectShortName">dpram[255:0][15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/C_LUT_WIDTH" type="other">
+      <obj_property name="ElementShortName">C_LUT_WIDTH</obj_property>
+      <obj_property name="ObjectShortName">C_LUT_WIDTH</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dds_gen/DUT/LUT/C_LUT_DEPTH" type="other">
+      <obj_property name="ElementShortName">C_LUT_DEPTH</obj_property>
+      <obj_property name="ObjectShortName">C_LUT_DEPTH</obj_property>
    </wvobject>
 </wave_config>

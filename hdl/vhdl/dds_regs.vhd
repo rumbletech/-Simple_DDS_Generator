@@ -13,7 +13,7 @@ entity dds_regs is
 	addr_i  : in  std_logic_vector(1 downto 0);
 	data_i  : in  std_logic_vector(31 downto 0);
 	data_o  : out std_logic_vector(31 downto 0);
-	tune_o  : out std_logic_vector(63 downto 0);
+	tune_o  : out std_logic_vector(31 downto 0);
 	start_o : out std_logic
 		
   );
@@ -22,8 +22,8 @@ end entity dds_regs;
 architecture implementation of dds_regs is
   
   constant REG_CTRL_ADDR    : std_logic_vector(1 downto 0) := "00";
-  constant REG_TUNE0_ADDR   : std_logic_vector(1 downto 0) := "01";
-  constant REG_TUNE1_ADDR   : std_logic_vector(1 downto 0) := "10";
+  constant REG_TUNE_ADDR    : std_logic_vector(1 downto 0) := "01";
+  constant REG_UNUSED0_ADDR : std_logic_vector(1 downto 0) := "10";
   constant REG_UNUSED1_ADDR : std_logic_vector(1 downto 0) := "11";
   
   constant BIT_START_INDEX     : INTEGER := 31;
@@ -61,8 +61,8 @@ architecture implementation of dds_regs is
 
   signal  reg_read       : std_logic_vector(31 downto 0) := ( others => '0' );
   signal  reg_ctrl       : std_logic_vector(31 downto 0) := ( others => '0' );
-  signal  reg_tuning_0   : std_logic_vector(31 downto 0) := ( others => '0' );
-  signal  reg_tuning_1   : std_logic_vector(31 downto 0) := ( others => '0' ); 
+  signal  reg_tuning     : std_logic_vector(31 downto 0) := ( others => '0' );
+  signal  reg_unused_0   : std_logic_vector(31 downto 0) := ( others => '0' ); 
   signal  reg_unused_1   : std_logic_vector(31 downto 0) := ( others => '0' ); 
 
 begin
@@ -72,28 +72,28 @@ process ( clk_i ) is begin
 		if ( rst_i = '1' ) then 
 			reg_read      <= ( others => '0' );
 			reg_ctrl      <= ( others => '0' );
-			reg_tuning_0  <= ( others => '0' );
-			reg_tuning_1  <= ( others => '0' );
+			reg_tuning    <= ( others => '0' );
+			reg_unused_0  <= ( others => '0' );
 			reg_unused_1  <= ( others => '0' );
 		else 
 			if ( sel_i = '1' ) then 
 				if ( rwr_i = '1' ) then 
 					case( addr_i ) is			
 						when REG_CTRL_ADDR    => reg_ctrl     <= data_i;
-						when REG_TUNE0_ADDR   => reg_tuning_0 <= data_i;
-						when REG_TUNE1_ADDR   => reg_tuning_1 <= data_i;
+						when REG_TUNE_ADDR    => reg_tuning   <= data_i;
+						when REG_UNUSED0_ADDR => reg_unused_0 <= data_i;
 						when REG_UNUSED1_ADDR => reg_unused_1 <= data_i;
 						when others =>
-						  reg_ctrl <= reg_ctrl;
-						  reg_tuning_0 <= reg_tuning_0;
-						  reg_tuning_1 <= reg_tuning_1;
+						  reg_ctrl     <= reg_ctrl;
+						  reg_tuning   <= reg_tuning;
+						  reg_unused_0 <= reg_unused_0;
 						  reg_unused_1 <= reg_unused_1;
 					end case;
 				else
 					case( addr_i ) is			
 						when REG_CTRL_ADDR    => reg_read <= reg_ctrl;
-						when REG_TUNE0_ADDR   => reg_read <= reg_tuning_0;
-						when REG_TUNE1_ADDR   => reg_read <= reg_tuning_1;
+						when REG_TUNE_ADDR    => reg_read <= reg_tuning;
+						when REG_UNUSED0_ADDR => reg_read <= reg_unused_0;
 						when REG_UNUSED1_ADDR => reg_read <= reg_unused_1;
 						when others           => reg_read <= reg_read;
 					end case;
@@ -101,8 +101,8 @@ process ( clk_i ) is begin
 			else 
 				reg_read     <= reg_read;
 				reg_ctrl     <= reg_ctrl;
-				reg_tuning_0 <= reg_tuning_0;
-				reg_tuning_1 <= reg_tuning_1;
+				reg_tuning   <= reg_tuning;
+				reg_unused_0 <= reg_unused_0;
 				reg_unused_1 <= reg_unused_1;
 				
 			end if;
@@ -111,7 +111,7 @@ process ( clk_i ) is begin
 end process;
 
 
-tune_o   <= reg_tuning_1 & reg_tuning_0;
+tune_o   <= reg_tuning;
 start_o  <= reg_ctrl(BIT_START_INDEX);	
 data_o   <= reg_read;
 					
