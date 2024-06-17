@@ -55,10 +55,12 @@ architecture tb of tb_dds_gen is
 
     -- Module Declarations --
 	
-    constant C_LUT_WIDTH : integer := 16;
-    constant C_LUT_DEPTH : integer := 256;
-    constant C_DA_WIDTH  : integer := 16;
-	
+    constant C_LUT_WIDTH   : integer := 16;
+    constant C_LUT_DEPTH   : integer := 256;
+    constant C_DA_WIDTH    : integer := 16;
+	constant C_REG_ITF_EN  : integer := 0;
+	constant C_INT_LUT_EN  : integer := 1;
+	  
     constant REG_CTRL_ADDR    : std_logic_vector(1 downto 0) := "00";
     constant REG_TUNE_ADDR   : std_logic_vector(1 downto 0) := "01";
     constant REG_UNUSED0_ADDR   : std_logic_vector(1 downto 0) := "10";
@@ -78,15 +80,23 @@ architecture tb of tb_dds_gen is
     signal lut_rwr_i   : std_logic;
     signal dac_data_o  : std_logic_vector (C_DA_WIDTH-1 downto 0);
 	signal dac_valid_o : std_logic;
+	signal cycle_cnt_o : std_logic;
+	signal ext_trig_i  : std_logic;
+	signal ext_tune_i  : std_logic_vector(31 downto 0);
+	signal ext_lut_addr_o : std_logic_vector(clog2(C_LUT_DEPTH)-1 downto 0);
+	signal ext_lut_data_i : std_logic_vector(C_LUT_WIDTH-1 downto 0);
+	signal ext_lut_ren_o  : std_logic;
     
 
 begin
 
     DUT : entity DDS.dds_gen
      generic map (
-                    C_LUT_WIDTH => C_LUT_WIDTH,
-                    C_LUT_DEPTH => C_LUT_DEPTH,
-                    C_DA_WIDTH  => C_DA_WIDTH
+					C_REG_ITF_EN => C_REG_ITF_EN,
+					C_INT_LUT_EN => C_INT_LUT_EN,
+                    C_LUT_WIDTH  => C_LUT_WIDTH,
+                    C_LUT_DEPTH  => C_LUT_DEPTH,
+                    C_DA_WIDTH   => C_DA_WIDTH
      )
     port map (clk_sys_i   => clk_sys_i,
               rst_sys_i   => rst_sys_i,
@@ -101,7 +111,13 @@ begin
               reg_rwr_i   => reg_rwr_i,
               lut_rwr_i   => lut_rwr_i,
               dac_data_o  => dac_data_o,
-			  dac_valid_o => dac_valid_o);
+			  dac_valid_o => dac_valid_o,
+			  cycle_cnt_o => cycle_cnt_o,
+			  ext_trig_i  => ext_trig_i,
+			  ext_tune_i  => ext_tune_i,
+			  ext_lut_addr_o => ext_lut_addr_o,
+			  ext_lut_data_i => ext_lut_data_i,
+			  ext_lut_ren_o  => ext_lut_ren_o);
 
     clock_gen : process
     begin
@@ -178,50 +194,88 @@ begin
 			lut_sel_i <= '0';
 			
     end procedure;
-    
+	
+	procedure TEST_1 is
+        begin
+			-- EDIT Adapt initialization as needed
+			reg_sel_i <= '0';
+			ext_trig_i <= '0';
+			ext_tune_i <= (others => '0');
+			ext_lut_data_i <= (others => '0');
+			reg_addr_i <= (others => '0');
+			reg_data_i <= (others => '0');
+			lut_sel_i <= '0';
+			lut_addr_i <= (others => '0');
+			lut_data_i <= (others => '0');
+			reg_rwr_i <= '0';		
+			lut_rwr_i <= '0';
+	
+			-- Reset generation
+			rst_sys_i <= '1';
+			wait for 100 ns;
+			rst_sys_i <= '0';
+			wait for 100 ns;
+			-- EDIT Add stimuli here
+			CheckReg(REG_CTRL_ADDR,X"10000000");
+			wait for 2*CLK_HPERIOD ;        
+			CheckReg(REG_TUNE_ADDR,X"20000000");
+			wait for 2*CLK_HPERIOD ;        
+			CheckReg(REG_UNUSED0_ADDR,X"40000000");
+			wait for 2*CLK_HPERIOD ;        
+			CheckReg(REG_UNUSED1_ADDR,X"80000000");
+			wait for 2*CLK_HPERIOD ;      
+	
+			CheckReg(REG_CTRL_ADDR,X"00000000");
+			wait for 2*CLK_HPERIOD ;        
+			CheckReg(REG_TUNE_ADDR,X"00000000");
+			wait for 2*CLK_HPERIOD ;        
+			CheckReg(REG_UNUSED0_ADDR,X"00000000");
+			wait for 2*CLK_HPERIOD ;        
+			CheckReg(REG_UNUSED1_ADDR,X"00000000");
+			wait for 2*CLK_HPERIOD ;     
+			-- Write Sine Table into LUT --
+			WriteSine;
+			wait for 2*CLK_HPERIOD ;
+			-- Write Tunning Word  and Start Synthesis --
+			CheckReg(REG_TUNE_ADDR,X"00001004");
+			wait for 2*CLK_HPERIOD ; 		
+			CheckReg(REG_CTRL_ADDR,X"80000000");
+			wait for 2*CLK_HPERIOD ;   	
+			
+    end procedure;
+	
+	procedure TEST_2 is
+        begin
+			-- EDIT Adapt initialization as needed
+			reg_sel_i <= '0';
+			ext_trig_i <= '0';
+			ext_tune_i <= (others => '0');
+			ext_lut_data_i <= (others => '0');
+			reg_addr_i <= (others => '0');
+			reg_data_i <= (others => '0');
+			lut_sel_i <= '0';
+			lut_addr_i <= (others => '0');
+			lut_data_i <= (others => '0');
+			reg_rwr_i <= '0';		
+			lut_rwr_i <= '0';
+	
+			-- Reset generation
+			rst_sys_i <= '1';
+			wait for 100 ns;
+			rst_sys_i <= '0';
+			wait for 100 ns;
+			-- Write Sine Table into LUT --
+			WriteSine;
+			wait for 2*CLK_HPERIOD ;
+			-- Write Tunning Word  and Start Synthesis --
+			ext_tune_i <= X"00001004";
+			ext_trig_i <= '1';		
+			wait for 2*CLK_HPERIOD ;
+			
+    end procedure;
+	
     begin
-        -- EDIT Adapt initialization as needed
-        reg_sel_i <= '0';
-        reg_addr_i <= (others => '0');
-        reg_data_i <= (others => '0');
-        lut_sel_i <= '0';
-        lut_addr_i <= (others => '0');
-        lut_data_i <= (others => '0');
-        reg_rwr_i <= '0';		
-		lut_rwr_i <= '0';
-
-        -- Reset generation
-        rst_sys_i <= '1';
-        wait for 100 ns;
-        rst_sys_i <= '0';
-        wait for 100 ns;
-        -- EDIT Add stimuli here
-        CheckReg(REG_CTRL_ADDR,X"10000000");
-        wait for 2*CLK_HPERIOD ;        
-        CheckReg(REG_TUNE_ADDR,X"20000000");
-        wait for 2*CLK_HPERIOD ;        
-        CheckReg(REG_UNUSED0_ADDR,X"40000000");
-        wait for 2*CLK_HPERIOD ;        
-        CheckReg(REG_UNUSED1_ADDR,X"80000000");
-		wait for 2*CLK_HPERIOD ;      
-
-        CheckReg(REG_CTRL_ADDR,X"00000000");
-        wait for 2*CLK_HPERIOD ;        
-        CheckReg(REG_TUNE_ADDR,X"00000000");
-        wait for 2*CLK_HPERIOD ;        
-        CheckReg(REG_UNUSED0_ADDR,X"00000000");
-        wait for 2*CLK_HPERIOD ;        
-        CheckReg(REG_UNUSED1_ADDR,X"00000000");
-		wait for 2*CLK_HPERIOD ;     
-		-- Write Sine Table into LUT --
-		WriteSine;
-		wait for 2*CLK_HPERIOD ;
-		-- Write Tunning Word  and Start Synthesis --
-        CheckReg(REG_TUNE_ADDR,X"00001004");
-        wait for 2*CLK_HPERIOD ; 		
-        CheckReg(REG_CTRL_ADDR,X"80000000");
-        wait for 2*CLK_HPERIOD ;   		
-
+		TEST_2;
         wait;
     end process;
 
