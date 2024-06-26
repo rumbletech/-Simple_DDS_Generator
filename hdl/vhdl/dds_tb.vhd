@@ -268,10 +268,24 @@ begin
 			WriteSine;
 			wait for 2*CLK_HPERIOD ;
 			-- Write Tunning Word  and Start Synthesis --
-			ext_tune_i <= X"00001004";
+			ext_tune_i <= X"00008004";
 			ext_trig_i <= '1';		
 			wait for 2*CLK_HPERIOD ;
 			
+			wait for 20 ms;
+			
+			ext_tune_i <= X"00010004";
+			ext_trig_i <= '1';		
+			wait for 2*CLK_HPERIOD ;
+			
+			wait for 20 ms;
+			
+			ext_tune_i <= X"00020004";
+			ext_trig_i <= '1';		
+			wait for 2*CLK_HPERIOD ;
+
+			wait for 20 ms;
+	
     end procedure;
 	
     begin

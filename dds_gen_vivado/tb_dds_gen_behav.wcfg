@@ -12,24 +12,17 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
-      <ZoomEndTime time="172.000000001 ms"></ZoomEndTime>
-      <Cursor1Time time="20.957110000 ms"></Cursor1Time>
+      <ZoomEndTime time="173.000000001 ms"></ZoomEndTime>
+      <Cursor1Time time="13.001000000 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="477"></NameColumnWidth>
-      <ValueColumnWidth column_width="199"></ValueColumnWidth>
+      <ValueColumnWidth column_width="194"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="35" />
+   <WVObjectSize size="34" />
    <wave_markers>
       <marker time="41908190000" label="" />
    </wave_markers>
-   <wvobject fp_name="/tb_dds_gen/test_wf" type="array">
-      <obj_property name="ElementShortName">test_wf[15:0]</obj_property>
-      <obj_property name="ObjectShortName">test_wf[15:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
-      <obj_property name="CellHeight">100</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_dds_gen/clk_sys_i" type="logic">
       <obj_property name="ElementShortName">clk_sys_i</obj_property>
       <obj_property name="ObjectShortName">clk_sys_i</obj_property>
